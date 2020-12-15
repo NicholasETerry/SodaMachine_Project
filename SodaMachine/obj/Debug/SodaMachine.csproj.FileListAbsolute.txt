@@ -1,0 +1,6 @@
+D:\CodeStuff\SodaMachine\SodaMachine\obj\Debug\SodaMachine.csprojAssemblyReference.cache
+D:\CodeStuff\SodaMachine\SodaMachine\bin\Debug\SodaMachine.exe.config
+D:\CodeStuff\SodaMachine\SodaMachine\bin\Debug\SodaMachine.exe
+D:\CodeStuff\SodaMachine\SodaMachine\bin\Debug\SodaMachine.pdb
+D:\CodeStuff\SodaMachine\SodaMachine\obj\Debug\SodaMachine.exe
+D:\CodeStuff\SodaMachine\SodaMachine\obj\Debug\SodaMachine.pdb

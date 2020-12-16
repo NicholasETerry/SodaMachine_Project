@@ -11,27 +11,74 @@ namespace SodaMachine
         //Member Variables (Has A)
         private List<Coin> _register;
         private List<Can> _inventory;
+        Quarter newQuarter;
+        Dime newDime;
+        Nickel newNickel;
+        Penny newPenny;
+        RootBeer newRootBeer;
+        Cola newCola;
+        OrangeSoda newOrangeSoda;
 
         //Constructor (Spawner)
         public SodaMachine()
         {
             _register = new List<Coin>();
             _inventory = new List<Can>();
-            FillInventory();
-            FillRegister();
+            FillInventory(newRootBeer,20,newCola,20,newOrangeSoda,20);
+            FillRegister(newQuarter,20,newDime,10,newNickel,20,newPenny,50);
         }
 
         //Member Methods (Can Do)
 
         //A method to fill the sodamachines register with coin objects.
-        public void FillRegister()
+        public void FillRegister(Coin quarters,int howManyQuarters,Coin dimes,int howManyDimes,Coin nickels, int howManyNickels,Coin pennies, int howManyPennies)
         {
-           
+            int startingAmount = 0;
+            while (startingAmount != howManyQuarters)
+            {
+                _register.Add(newQuarter);
+                startingAmount++;
+            }
+            startingAmount = 0;
+            while (startingAmount != howManyDimes)
+            {
+                _register.Add(newDime);
+                startingAmount++;
+            }
+            startingAmount = 0;
+            while (startingAmount != howManyNickels)
+            {
+                _register.Add(newNickel);
+                startingAmount++;
+            }
+            startingAmount = 0;
+            while (startingAmount != howManyPennies)
+            {
+                _register.Add(newPenny);
+                startingAmount++;
+            }
         }
         //A method to fill the sodamachines inventory with soda can objects.
-        public void FillInventory()
+        public void FillInventory(Can rootBeer,int howManyRootBeer,Can cola,int howManyCola,Can orange,int howManyOrange)
         {
-            
+            int startingAmount = 0;
+            while (startingAmount != howManyRootBeer)
+            {
+                _inventory.Add(newRootBeer);
+                startingAmount++;
+            }
+            startingAmount = 0;
+            while (startingAmount != howManyCola)
+            {
+                _inventory.Add(newCola);
+                startingAmount++;
+            }
+            startingAmount = 0;
+            while (startingAmount != howManyOrange)
+            {
+                _inventory.Add(newOrangeSoda);
+                startingAmount++;
+            }
         }
         //Method to be called to start a transaction.
         //Takes in a customer which can be passed freely to which ever method needs it.

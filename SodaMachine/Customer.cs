@@ -27,13 +27,14 @@ namespace SodaMachine
         public List<Coin> GatherCoinsFromWallet(Can selectedCan)
         {
             UserInterface.CoinSelection(selectedCan, Wallet.Coins);
-
+            // CUSTOMER IS PICKING COINS FROM WALLET TO USE, DOESNT MEAN THE COINS ARE REALLY THERE
 
         }
         //Returns a coin object from the wallet based on the name passed into it.
         //Returns null if no coin can be found
         public Coin GetCoinFromWallet(string coinName)
         {
+            // CHECKS TO SEE IF WALLET CONTAINS THE GATHER COINS FROM WALLET CALL
             UserInterface.V
         }
         //Takes in a list of coin objects to add into the customers wallet.

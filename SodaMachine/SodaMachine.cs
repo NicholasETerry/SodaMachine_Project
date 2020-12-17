@@ -97,12 +97,22 @@ namespace SodaMachine
         //pass payment to the calculate transaction method to finish up the transaction based on the results.
         private void Transaction(Customer customer)
         {
-           
+            string userSelected = UserInterface.SodaSelection(_inventory);
+            GetSodaFromInventory(userSelected);
         }
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)
         {
-          
+            List<Can> HowMany = new List<Can>();
+            foreach (var item in _inventory)
+            {
+                if (nameOfSoda == item.Name)
+                {
+                    HowMany.Add(item);   
+                }
+            }
+            return HowMany.First(); // returning soda object to either be added to backpack or removed from sodamachine
+            
         }
 
         //This is the main method for calculating the result of the transaction.
@@ -141,7 +151,7 @@ namespace SodaMachine
         {
             
         }
-        //Takes in a list of coins to returnt he total value of the coins as a double.
+        //Takes in a list of coins to return the total value of the coins as a double.
         private double TotalCoinValue(List<Coin> payment)
         {
            

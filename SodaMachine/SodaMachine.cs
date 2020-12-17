@@ -98,7 +98,7 @@ namespace SodaMachine
         private void Transaction(Customer customer)
         {
             string userSelected = UserInterface.SodaSelection(_inventory);
-            GetSodaFromInventory(userSelected);
+            CalculateTransaction(customer.GatherCoinsFromWallet(GetSodaFromInventory(userSelected)), GetSodaFromInventory(userSelected), customer);
         }
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)

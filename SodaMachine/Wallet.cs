@@ -17,6 +17,10 @@ namespace SodaMachine
         //Constructor (Spawner)
         public Wallet()
         {
+            newQuarter = new Quarter();
+            newDime = new Dime();
+            newNickel = new Nickel();
+            newPenny = new Penny();
             Coins = new List<Coin>();
             FillWallet();// FillRegister();
         }

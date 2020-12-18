@@ -105,6 +105,7 @@ namespace SodaMachine
         private void Transaction(Customer customer)
         {
             string userSelected = UserInterface.SodaSelection(_inventory);
+            UserInterface.CoinSelection(GetSodaFromInventory(userSelected),customer.Wallet.Coins);
             CalculateTransaction(customer.GatherCoinsFromWallet(GetSodaFromInventory(userSelected)), GetSodaFromInventory(userSelected), customer);
         }
         //Gets a soda from the inventory based on the name of the soda.
@@ -131,13 +132,36 @@ namespace SodaMachine
         //If the payment does not meet the cost of the soda: dispense payment back to the customer.
         private void CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
         {
-            double totalValue = 0;
-            foreach (var item in payment)
+            double totalValue = TotalCoinValue(payment);
+
+            if (totalValue < chosenSoda.Price)
             {
-                totalValue += item.Value;
+                Console.WriteLine("You did not supply enough money. Returning coins to your wallet.");
+                customer.AddCoinsIntoWallet(payment);
             }
-            totalValue = totalValue - chosenSoda.Price;
-            TotalCoinValue(GatherChange(DetermineChange(totalValue,chosenSoda.Price)));
+
+            else if (totalValue == chosenSoda.Price)
+            {
+                DepositCoinsIntoRegister(payment);
+                customer.AddCanToBackpack(chosenSoda);
+                _inventory.Remove(chosenSoda);
+            }
+
+            else if (totalValue > chosenSoda.Price && _inventory.Count > 0)
+            {
+                double getChange = 0;
+                DepositCoinsIntoRegister(payment);
+                getChange = DetermineChange(totalValue, chosenSoda.Price);
+                customer.AddCoinsIntoWallet(GatherChange(getChange));
+                customer.AddCanToBackpack(chosenSoda);
+                _inventory.Remove(chosenSoda);
+            }
+            else if (totalValue > chosenSoda.Price && _inventory.Count == 0)
+            {
+                Console.WriteLine("Soda out of stock. Returning coins to your wallet");
+                customer.AddCoinsIntoWallet(payment);
+            }
+            //TotalCoinValue(GatherChange(DetermineChange(totalValue,chosenSoda.Price)));
         }
         //Takes in the value of the amount of change needed.
         //Attempts to gather all the required coins from the sodamachine's register to make change.
@@ -186,7 +210,6 @@ namespace SodaMachine
                 }
             }
             return GatherList;
-            // _register coin list
         }
         //Reusable method to check if the register has a coin of that name.
         //If it does have one, return true.  Else, false.

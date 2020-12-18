@@ -13,7 +13,8 @@ namespace SodaMachine
         //Constructor (Spawner)
         public Penny()
         {
-            
+            value = 0.01;
+            Name = "Penny";
         }
         //Member Methods (Can Do)
     }

@@ -22,6 +22,13 @@ namespace SodaMachine
         //Constructor (Spawner)
         public SodaMachine()
         {
+            newQuarter = new Quarter();
+            newDime = new Dime();
+            newNickel = new Nickel();
+            newPenny = new Penny();
+            newRootBeer = new RootBeer();
+            newCola = new Cola();
+            newOrangeSoda = new OrangeSoda();
             _register = new List<Coin>();
             _inventory = new List<Can>();
             FillInventory(newRootBeer,20,newCola,20,newOrangeSoda,20);
@@ -124,7 +131,13 @@ namespace SodaMachine
         //If the payment does not meet the cost of the soda: dispense payment back to the customer.
         private void CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
         {
-           
+            double totalValue = 0;
+            foreach (var item in payment)
+            {
+                totalValue += item.Value;
+            }
+            totalValue = totalValue - chosenSoda.Price;
+            TotalCoinValue(GatherChange(DetermineChange(totalValue,chosenSoda.Price)));
         }
         //Takes in the value of the amount of change needed.
         //Attempts to gather all the required coins from the sodamachine's register to make change.
@@ -132,34 +145,109 @@ namespace SodaMachine
         //If the change cannot be made, return null.
         private List<Coin> GatherChange(double changeValue)
         {
-            
+            List<Coin> GatherList = new List<Coin>();
+            if(changeValue == 0)
+            {
+                return GatherList;
+            }
+            double quartersNeeded = changeValue / 25;
+            if(quartersNeeded > 0 && RegisterHasCoin(newQuarter.Name) == true)
+            {
+                for (int i = 0; i < quartersNeeded; i++)
+                {
+                        GatherList.Add(GetCoinFromRegister(newQuarter.Name));
+                }
+            }
+            changeValue -= (quartersNeeded * 25);
+            double dimesNeeded = changeValue / 10;
+            if (dimesNeeded > 0 && RegisterHasCoin(newDime.Name) == true)
+            {
+                for (int i = 0; i < quartersNeeded; i++)
+                {
+                    GatherList.Add(GetCoinFromRegister(newDime.Name));
+                }
+            }
+            changeValue -= (dimesNeeded * 10);
+            double nickelsNeeded = changeValue / 5;
+            if (nickelsNeeded > 0 && RegisterHasCoin(newNickel.Name) == true)
+            {
+                for (int i = 0; i < quartersNeeded; i++)
+                {
+                    GatherList.Add(GetCoinFromRegister(newNickel.Name));
+                }
+            }
+            changeValue -= (nickelsNeeded * 5);
+            double penniesNeeded = changeValue;
+            if (penniesNeeded > 0 && RegisterHasCoin(newPenny.Name) == true)
+            {
+                for (int i = 0; i < quartersNeeded; i++)
+                {
+                    GatherList.Add(GetCoinFromRegister(newPenny.Name));
+                }
+            }
+            return GatherList;
+            // _register coin list
         }
         //Reusable method to check if the register has a coin of that name.
         //If it does have one, return true.  Else, false.
         private bool RegisterHasCoin(string name)
         {
-           
+            string testName = "";
+            while (testName != name)
+            {
+                foreach (var item in _register)
+                {
+                    if(name == item.Name)
+                    {
+                        testName = name;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+            }
+            return true;
         }
         //Reusable method to return a coin from the register.
         //Returns null if no coin can be found of that name.
         private Coin GetCoinFromRegister(string name)
         {
-            
+            List<Coin> holdList = new List<Coin>();
+            foreach (var item in _register)
+            {
+                if(item.Name == name)
+                {
+                    holdList.Add(item);
+                }
+            }
+            return holdList.First();
         }
         //Takes in the total payment amount and the price of can to return the change amount.
         private double DetermineChange(double totalPayment, double canPrice)
         {
-            
+            double change = totalPayment - canPrice;
+            return change;
         }
         //Takes in a list of coins to return the total value of the coins as a double.
         private double TotalCoinValue(List<Coin> payment)
         {
-           
+            DepositCoinsIntoRegister(payment);
+            double totalValue = 0;
+            foreach (var item in payment)
+            {
+                totalValue += item.Value;
+            }
+            return totalValue;
         }
         //Puts a list of coins into the soda machines register.
         private void DepositCoinsIntoRegister(List<Coin> coins)
         {
-           
+            foreach (var item in coins)
+            {
+                _register.Add(item);
+            }
         }
     }
 }

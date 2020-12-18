@@ -44,12 +44,14 @@ namespace SodaMachine
             {
                 // 15 nickels
                 Coins.Add(newNickel);
+                startingAmount++;
             }
             startingAmount = 0;
             while (startingAmount != 25)
             {
                 // 25 pennies
                 Coins.Add(newPenny);
+                startingAmount++;
             }
         }
     }

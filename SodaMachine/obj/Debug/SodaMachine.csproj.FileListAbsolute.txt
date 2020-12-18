@@ -4,3 +4,10 @@ D:\CodeStuff\SodaMachine\SodaMachine\bin\Debug\SodaMachine.exe
 D:\CodeStuff\SodaMachine\SodaMachine\bin\Debug\SodaMachine.pdb
 D:\CodeStuff\SodaMachine\SodaMachine\obj\Debug\SodaMachine.exe
 D:\CodeStuff\SodaMachine\SodaMachine\obj\Debug\SodaMachine.pdb
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\bin\Debug\SodaMachine.exe.config
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\bin\Debug\SodaMachine.exe
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\bin\Debug\SodaMachine.pdb
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\obj\Debug\SodaMachine.csprojAssemblyReference.cache
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\obj\Debug\SodaMachine.csproj.CoreCompileInputs.cache
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\obj\Debug\SodaMachine.exe
+C:\Users\Nicholas\Desktop\DevCode\Thulium\SodaMachine\SodaMachine\obj\Debug\SodaMachine.pdb
